@@ -16,32 +16,20 @@ const InvoicePreview = () => {
   
 //  downloading pdf code-
   const downloadPDF = () => {
-    const input = document.getElementById("invoice-preview")
+    const input = document.getElementById("invoice-preview");
 
     html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png")
-      const pdf = new jsPDF("p", "mm", "a4")
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
 
-      const pageWidth = pdf.internal.pageSize.getWidth()
-      const pageHeight = pdf.internal.pageSize.getHeight()
+      const width = pdf.internal.pageSize.getWidth();
+      const height = (canvas.height * width) / canvas.width;
 
-      // margin to all side
-      const margin=15
-    const imgWidth = pageWidth - margin * 2;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-    pdf.addImage(
-      imgData,
-      "PNG",
-      margin,        // X margin
-      margin,        // Y margin
-      imgWidth,
-      imgHeight
-    );
-
-    pdf.save("invoice.pdf");
+      pdf.addImage(imgData, "PNG", 0, 0, width, height);
+      pdf.save(`Invoice-${invoice.id}.pdf`);
     });
   };
+
 
   return (
     <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-50 p-4">
