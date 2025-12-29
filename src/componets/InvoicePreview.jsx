@@ -56,21 +56,21 @@ const InvoicePreview = () => {
         {/* Invoice Content */}
     
         <div id="invoice-preview">
-            <div className="grid grid-cols-2 justify-between items-center text-xl my-3"> 
+            <div className="flex flex-col text-xl my-3"> 
                 <p><b>Invoice ID:</b> {invoice.id}</p>
                <p><b>Invoice Date:</b> {invoice.invoiceDate}</p>
            </div>
 
            {/* sender info */}
-            <h2 className="text-xl font-bold my-3 items-center">Sender Info:</h2>
-          <div className="grid grid-cols-2">
+            <h2 className="text-xl font-bold my-3 items-center underline">Sender Info:</h2>
+          <div className="flex flex-col items-start gap-1">
           <p className="text-lg "><b >Name :</b> {invoice.billFrom.name}</p>
           <p className="text-lg "><b>Address : </b> {invoice.billFrom.city},{invoice.billFrom.post},{invoice.billFrom.country}</p>
           </div>
 
           {/* Client info */}
-            <h2 className="text-xl font-bold my-3 items-center">Client Info:</h2>
-          <div className="grid grid-cols-3 items-center">
+            <h2 className="text-xl font-bold my-3 items-center underline">Client Info:</h2>
+          <div className="flex flex-col items-start gap-1">
           <p className="text-lg "><b >Name :</b> {invoice.billTo.name}</p>
           <p className="text-lg "><b>Email : </b> {invoice.billTo.email}</p>
           <p><b>Address : </b>{invoice.billTo.address},{invoice.billTo.post},{invoice.billTo.country}</p>
@@ -79,7 +79,7 @@ const InvoicePreview = () => {
 
        {/* summary of item and amount */}
 
-           <h2 className="text-xl font-bold  my-5">Summary:</h2>
+           <h2 className="text-xl font-bold underline my-5">Summary:</h2>
           <hr className="my-3" />
            
           {invoice.items.map((item, i) => (
